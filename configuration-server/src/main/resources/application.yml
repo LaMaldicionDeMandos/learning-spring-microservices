@@ -1,5 +1,10 @@
 server:
-  port:8888
+  port: 8888
 spring:
   profiles:
     active: native
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: file:///Users/boot/proyectos/pruebas/microservices-spring/learning-spring-microservices/configuration-server/src/main/resources/config/service1,file:///Users/boot/proyectos/pruebas/microservices-spring/learning-spring-microservices/configuration-server/src/main/resources/config/service2

@@ -15,6 +15,15 @@
 		<version>1.5.1.RELEASE</version>
 	</parent>
 
+	<build>
+		<plugins>
+			<plugin> <!-- Este plugin permite crear un jar, ademas tiene el goal spring-boot:run -->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
