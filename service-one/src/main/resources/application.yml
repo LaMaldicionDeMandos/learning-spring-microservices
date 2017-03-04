@@ -1,10 +1,6 @@
-property: "Service one ${ambiente}"
-ambiente: Default
----
 spring:
-    profiles: development
-ambiente: Developer
----
-spring:
-    profiles: production
-ambiente: Production
+  application:
+    name: service-one
+  cloud:
+    config:
+      uri: http://localhost:8888
