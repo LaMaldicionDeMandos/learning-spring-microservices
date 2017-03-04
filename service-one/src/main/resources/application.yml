@@ -1,0 +1,10 @@
+property: "Service one ${ambiente}"
+ambiente: Default
+---
+spring:
+    profiles: development
+ambiente: Developer
+---
+spring:
+    profiles: production
+ambiente: Production
