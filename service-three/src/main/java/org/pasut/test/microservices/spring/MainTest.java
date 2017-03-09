@@ -8,6 +8,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpMethod;
@@ -28,6 +29,7 @@ import java.util.Random;
 @RefreshScope
 @EnableEurekaClient
 @ComponentScan
+@EnableFeignClients
 public class MainTest {
     private final Random rnd = new Random();
 
@@ -37,6 +39,9 @@ public class MainTest {
     @Autowired
     ServiceTwoRestTemplateClient serviceTwo;
 
+    @Autowired
+    ServiceTwoFeignClient serviceTwoFeign;
+
     @Bean
     @LoadBalanced
     public RestTemplate getRestTemplate(){
@@ -45,7 +50,7 @@ public class MainTest {
 
     @RequestMapping(value="/{echo}", method= RequestMethod.GET)
     String echo(@PathVariable String echo) {
-        return "Service three says " + echo + " but service two says " + getServiceTwoSaysWithRestTemplate();
+        return "Service three says " + echo + " but service two says " + getServiceTwoSaysWithFeign();
     }
 
     private String getServiceTwoSaysWithDiscoveryService() {
@@ -65,6 +70,11 @@ public class MainTest {
 
     private String getServiceTwoSaysWithRestTemplate() {
         return serviceTwo.say();
+
+    }
+
+    private String getServiceTwoSaysWithFeign() {
+        return serviceTwoFeign.say();
 
     }
 
