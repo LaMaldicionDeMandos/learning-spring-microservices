@@ -23,15 +23,19 @@ public class MainTest {
     @RequestMapping("/")
     @HystrixCommand(threadPoolProperties = {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",
-            value = "2000")
-    })
+                    value = "2000")
+    }, fallbackMethod = "errorHandler")
     String hello(@Value("${instance}") String hello) {
         try {
-            Thread.sleep(rnd.nextInt(1500));
+            Thread.sleep(rnd.nextInt(3500));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return hello;
+    }
+
+    String errorHandler(String hello) {
+        return "say " + hello + " but with error by timeout";
     }
 
     public static void main(String[] args) {
