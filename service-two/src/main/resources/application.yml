@@ -1,6 +1,6 @@
-instance: three
+instance: two
 server:
-  port: 8083
+  port: 8082
 spring:
   application:
     name: service-two
