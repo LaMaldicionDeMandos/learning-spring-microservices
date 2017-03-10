@@ -1,6 +1,7 @@
 package org.pasut.test.microservices.spring;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -20,7 +21,10 @@ public class MainTest {
     private final static Random rnd = new Random();
 
     @RequestMapping("/")
-    @HystrixCommand
+    @HystrixCommand(threadPoolProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",
+            value = "2000")
+    })
     String hello(@Value("${instance}") String hello) {
         try {
             Thread.sleep(rnd.nextInt(1500));
