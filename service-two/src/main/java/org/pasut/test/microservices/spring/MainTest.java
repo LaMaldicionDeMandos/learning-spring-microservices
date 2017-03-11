@@ -25,7 +25,14 @@ public class MainTest {
     private final static Random rnd = new Random();
 
     @RequestMapping("/")
-    @HystrixCommand(fallbackMethod = "errorHandler")
+    @HystrixCommand(fallbackMethod = "errorHandler", //El metodo que se ejecuta si sale por timeout,
+            threadPoolKey = "helloThreadPool",
+            threadPoolProperties = {
+                    @HystrixProperty(name = "coreSize", value = "30"), // Cantidad de threads
+                    @HystrixProperty(name = "maxQueueSize", value = "10"), // Tamaño de la cola de espera
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000"),
+                    }
+                    )
     String hello(@Value("${instance}") String hello) {
         try {
             Thread.sleep(rnd.nextInt(500));
