@@ -27,6 +27,7 @@ zuul:
     request: true
   routes:
     service-two: /servicetwo/**
+    service-three: /servicethree/**
     #service-one: #Ejemplo de roteo estatico
       #path: /serviceone/**
       #url: http://localhost:8080

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -45,7 +46,14 @@ public class MainTest {
     @Bean
     @LoadBalanced
     public RestTemplate getRestTemplate(){
-        return new RestTemplate();
+        RestTemplate template = new RestTemplate();
+        List interceptors = template.getInterceptors();
+        if (interceptors == null) {
+            template.setInterceptors(Collections.singletonList(new UserContextInterceptor()));
+        } else {
+            interceptors.add(new UserContextInterceptor()); template.setInterceptors(interceptors);
+        }
+        return template;
     }
 
     @RequestMapping(value="/{echo}", method= RequestMethod.GET)
