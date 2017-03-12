@@ -17,3 +17,6 @@ zuul:
   prefix: /api
   routes:
     service-two: /servicetwo/**
+    service-one: #Ejemplo de roteo estatico
+      path: /serviceone/**
+      url: http://localhost:8080
