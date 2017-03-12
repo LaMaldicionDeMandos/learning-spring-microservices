@@ -1,10 +1,12 @@
-package org.pasut.test.microservices.spring.discovery;
+package org.pasut.test.microservices.spring.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan
 @EnableZuulProxy
 public class ApiGatewayApplication {
     public static void main(String[] args) {
