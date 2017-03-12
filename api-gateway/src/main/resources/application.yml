@@ -1,4 +1,5 @@
-#Default port is 8761 server:
+#Default port is 5555 server:
+#Para refrescar la configuracion en caliente, hay que hacer un POST a /refresh
 server:
   port: 5555
 management:
@@ -12,11 +13,29 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+hystrix: # Configuro timeout para que no rompa si un servicio tarda mucho
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
 zuul:
   ignore-services: '*'
   prefix: /api
+  debug:
+    request: true
   routes:
     service-two: /servicetwo/**
-    service-one: #Ejemplo de roteo estatico
-      path: /serviceone/**
-      url: http://localhost:8080
+    #service-one: #Ejemplo de roteo estatico
+      #path: /serviceone/**
+      #url: http://localhost:8080
+    #service-zero:
+      #path: /servicezero/**
+      #serviceId: servicezero
+#ribbon: ejemplo de ruteo manual con multiples instancias
+  #eureka:
+    #enabled: false
+#servicezero:
+  #ribbon:
+    #listOfServers: http://localhost:8086, http://localhost:8087
