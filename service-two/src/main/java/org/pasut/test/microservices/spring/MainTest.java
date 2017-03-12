@@ -25,17 +25,17 @@ public class MainTest {
     private final static Random rnd = new Random();
 
     @RequestMapping("/")
-    @HystrixCommand
+    @HystrixCommand(fallbackMethod = "errorHandler")
     String hello(@Value("${instance}") String hello) {
         try {
-            Thread.sleep(rnd.nextInt(500));
+            Thread.sleep(rnd.nextInt(2000));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return hello;
     }
 
-    String errorHandler(String hello) {
+    String errorHandler(@Value("${instance}") String hello) {
         return "say " + hello + " but with error by timeout";
     }
 

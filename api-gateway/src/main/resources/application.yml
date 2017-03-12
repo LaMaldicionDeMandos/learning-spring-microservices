@@ -13,5 +13,6 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 zuul:
+  ignore-services: service-two
   routes:
-    servicetwo: /servicetwo/**
+    service-two: /servicetwo/**
