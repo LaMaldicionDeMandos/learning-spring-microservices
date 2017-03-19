@@ -5,6 +5,12 @@ server:
 management:
   security:
     enabled: false
+spring:
+  application:
+    name: apigateway
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:9999/uaa/user
 eureka:
   instance:
     preferIpAddress: true
@@ -22,12 +28,12 @@ hystrix: # Configuro timeout para que no rompa si un servicio tarda mucho
             timeoutInMilliseconds: 30000
 zuul:
   ignore-services: '*'
-  prefix: /api
   debug:
     request: true
   routes:
-    service-two: /servicetwo/**
-    service-three: /servicethree/**
+    service-two: /api/servicetwo/**
+    service-three: /api/servicethree/**
+    authservice: /auth/**
     #service-one: #Ejemplo de roteo estatico
       #path: /serviceone/**
       #url: http://localhost:8080

@@ -6,7 +6,6 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan
 @EnableZuulProxy
 public class ApiGatewayApplication {
     public static void main(String[] args) {
