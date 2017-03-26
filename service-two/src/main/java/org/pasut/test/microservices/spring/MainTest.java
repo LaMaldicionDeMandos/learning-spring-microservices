@@ -8,10 +8,13 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.Filter;
 import java.util.Random;
 
 @RestController
@@ -21,6 +24,7 @@ import java.util.Random;
 @EnableEurekaClient
 @EnableHystrix
 @Configuration
+@EnableResourceServer
 public class MainTest {
     private final static Random rnd = new Random();
 
