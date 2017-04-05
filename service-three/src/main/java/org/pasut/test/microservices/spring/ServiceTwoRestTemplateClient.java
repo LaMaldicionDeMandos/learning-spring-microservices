@@ -3,8 +3,8 @@ package org.pasut.test.microservices.spring;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * Created by boot on 3/8/17.
@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class ServiceTwoRestTemplateClient {
     @Autowired
-    RestTemplate restTemplate;
+    OAuth2RestTemplate restTemplate;
 
     public String say() {
         ResponseEntity<String> restExchange =
