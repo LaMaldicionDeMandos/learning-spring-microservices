@@ -27,6 +27,7 @@ hystrix: # Configuro timeout para que no rompa si un servicio tarda mucho
           thread:
             timeoutInMilliseconds: 30000
 zuul:
+  sensitiveHeader: Cookie,Set-Cookie #Es una lista negra, al no estar Authorization, le estoy diciendo que propague el header
   ignore-services: '*'
   debug:
     request: true
