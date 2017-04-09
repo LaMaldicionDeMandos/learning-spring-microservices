@@ -46,7 +46,7 @@ public class JwtOauth2Config extends AuthorizationServerConfigurerAdapter {
                 .accessTokenConverter(jwtAccessTokenConverter)
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService);
-        
+
     }
 
 }
