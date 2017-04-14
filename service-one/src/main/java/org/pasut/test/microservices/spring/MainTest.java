@@ -1,5 +1,6 @@
 package org.pasut.test.microservices.spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -18,8 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableBinding(Source.class)
 public class MainTest {
 
+    @Autowired
+    EchoSourceBean echoSender;
+
     @RequestMapping(value="/echo/{echo}", method= RequestMethod.GET)
     String echo(@Value("${property}") String hello, @PathVariable String echo) {
+        echoSender.send(echo);
         return hello + " says " + echo;
     }
 
