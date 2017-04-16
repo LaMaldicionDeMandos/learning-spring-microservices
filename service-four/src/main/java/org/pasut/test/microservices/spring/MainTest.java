@@ -7,11 +7,10 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.cloud.stream.messaging.Sink;
 
 @EnableAutoConfiguration //como agregue la dependencia web (tomcat + spring MVC), asume que estoy creando una aplicacion web
 @SpringBootApplication
-@EnableBinding(Sink.class) //Escucha en el channel definido en la interface Sink, el channel que define sink es "input"
+@EnableBinding(CustomChannels.class) //Escucha en el channel definido en la interface Sink, el channel que define sink es "input"
 public class MainTest {
     private final static Logger logger = LoggerFactory.getLogger(MainTest.class);
 
@@ -19,7 +18,7 @@ public class MainTest {
         SpringApplication.run(MainTest.class, args);
     }
 
-    @StreamListener(Sink.INPUT)
+    @StreamListener("inputCustomChannel")
     public void loggerSink(final EchoModel model) {
         logger.debug("Receiving echo message {}.", model.getMessage());
         System.out.println("Receiving echo message " + model.getMessage() + ".");

@@ -7,7 +7,7 @@ spring:
     stream:
       default-binder: kafka
       bindings:
-        input: #Es el input definido por default en Sink
+        inputCustomChannel: #Referencial a la interface CustomChannels
           destination: exampleTopic
           content-type: application/json
           group: four-service #Esto es lo que permite tener una cola por servicio
