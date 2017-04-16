@@ -8,9 +8,6 @@ management:
 spring:
   application:
     name: apigateway
-  oauth2:
-    resource:
-      userInfoUri: http://localhost:9999/uaa/user
 eureka:
   instance:
     preferIpAddress: true
@@ -34,7 +31,8 @@ zuul:
   routes:
     service-two: /api/servicetwo/**
     service-three: /api/servicethree/**
-    authservice: /auth/**
+    service-one: /api/serviceone/**
+    service-four: /api/servicefour/**
     #service-one: #Ejemplo de roteo estatico
       #path: /serviceone/**
       #url: http://localhost:8080
