@@ -39,6 +39,7 @@ public class MainTest {
 
     @RequestMapping("/")
     String hello() {
+        logger.info("Call to hello");
         return "Service four call service one and say: "+ serviceOne.say();
     }
 }
